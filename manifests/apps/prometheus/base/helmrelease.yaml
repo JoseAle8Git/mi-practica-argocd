@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: prometheus
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   sources:
@@ -11,7 +13,7 @@ spec:
       targetRevision: "*"
       helm:
         valueFiles:
-          - $values/resources/apps/prometheus-values.yaml
+          - $values/resources/apps/prometheus/values.yaml
     - repoURL: https://github.com/JoseAle8Git/mi-practica-argocd.git
       targetRevision: HEAD
       ref: values
